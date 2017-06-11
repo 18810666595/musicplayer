@@ -1,0 +1,53 @@
+.musicbox * {
+  border: 1px solid #000;
+}
+
+.musicbox {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 480px;
+  border: 1px solid #000;
+  text-align: center;
+  background: url(../img/1.jpg);
+  background-size: contain ;
+  background-repeat: no-repeat;
+}
+
+.musicbox {
+  & > .header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.musicbox {
+  & > .main {
+    flex-grow: 1;
+  }
+}
+
+.musicbox > .footer {}
+
+.musicbox {
+  &> .header {
+    &> .album {
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+    }
+
+    &>.lrc {
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+
+
+.musicbox > .main {
+  display: flex;
+  flex-direction: column;
+}
