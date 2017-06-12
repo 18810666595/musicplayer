@@ -1,0 +1,49 @@
+
+
+
+/*-------自定义调节大小---------*/
+.iconfont {
+  display: inline-block;
+  color: 	#F5F5DC;
+}
+
+.iconfont:hover{
+  /*font-weight: bold;*/
+  transform: scale(0.9);
+  /*text-shadow: 3px 3px 3px yellow;*/
+}
+
+.icon-pause:before {
+  font-size: 35px;
+}
+
+.icon-pre:before {
+  font-size: 28px;
+}
+
+.icon-voice:before {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.icon-music:before {
+  font-size: 30px;
+}
+
+.icon-play:before {
+  font-size: 40px;
+  color: #FAFAD2;
+}
+
+.icon-hide:before {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.icon-lrc:before {
+  font-size: 30px;
+}
+
+.icon-next:before {
+  font-size: 28px;
+}

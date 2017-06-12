@@ -7,30 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>musicplayer</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_sdq5b8jzjsl40a4i.css">
 </head>
 
 <body>
     <div class="musicbox">
-        <div class="header">
-            <div class="album">album</div>
-            <div class="lrc">lrc</div>
-        </div>
+        <header>
+            <div class="album"><i class="iconfont icon-music"></i>
+              <ul class="album-list hidden">
+              </ul>
+            </div>
+            <div class="lrc"><i class="iconfont icon-lrc"></i </div>
+        </header>
 
-        <div class="main">
+        <main>
             <h2>title</h2>
             <p>artist</p>
+            <pre></pre>
 
-            <div class="control">
-              <i>pre</i>
-              <i>play</i>
-              <i>next</i>
+
+            <div class="pic-ct">
+              <div class="disc active"></div>
+              <div class="pic">
+              </div>
+
             </div>
+        </main>
 
-            <div class="lrc">
-
+        <footer>
+          <div class="adjust">
+            <div class="adjust-volume">
+              <i class="iconfont icon-voice"></i>
             </div>
-        </div>
-        <div class="footer">footer</div>
+            <div class="adjust-hide"><i class="iconfont icon-hide"></i></div>
+          </div>
+          <div class="timeline">timeline</div>
+          <div class="control">
+            <i class="pre iconfont icon-pre"></i>
+            <i class="play iconfont icon-play"></i>
+            <i class="play iconfont icon-pause"></i>
+            <i class="next iconfont icon-next"></i>
+          </div>
+
+        </footer>
     </div>
 </body>
 

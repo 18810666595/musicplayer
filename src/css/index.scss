@@ -1,50 +1,226 @@
-.musicbox * {
-  border: 1px solid #000;
-}
+// .musicbox * {
+//   border: 1px solid #000;
+// }
 
 .musicbox {
+  margin: 10px auto;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  height: 480px;
-  border: 1px solid #000;
+  width: 500px;
+  height: 600px;
+  // border: 1px solid #000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px  	#4B0082;
   text-align: center;
+  background: linear-gradient(45deg	,	#a907a9, #9370DB);
 }
 
 .musicbox {
-  & > .header {
+  & > header {
     display: flex;
     justify-content: space-between;
   }
 }
 
 .musicbox {
-  & > .main {
-    flex-grow: 1;
+  & > header {
+    & > .album {
+      position: relative;
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+      & > .album-list {
+        position: absolute;
+        z-index: 100;
+        top: 100%;
+        left: 0;
+        border: 1px solid rgba(245,245,220,0.3 );
+        // background: red;
+        width: 100px;
+        height: 340px;
+        border-radius: 5px;
+        color: white;
+        overflow: auto;
+        // box-shadow: 2px 2px 2px rgba(245,245,220,0.3 );
+        & > li {
+          padding: 5px 0;
+          &:hover {
+            background: rgba(245,245,220,0.3 );
+            cursor: default;
+          }
+        }
+      }
+      & > .album-list.hidden {
+        display: none;
+      }
+    }
+
+    & > .lrc {
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+    }
   }
 }
-
-.musicbox > .footer {}
 
 .musicbox {
-  &> .header {
-    &> .album {
-      margin: 10px;
-      width: 40px;
-      height: 40px;
+  & > main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    & > h2 {
+      // margin-top: 70px;
+      font-size: 28px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    &>.lrc {
-      margin: 10px;
-      width: 40px;
-      height: 40px;
+    & > p {
+      margin-top: 10px;
+      font-size: 18px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & > pre {
+      display: none;
+    }
+
+    & > .pic-ct {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      padding: 8px;
+      & > .disc {
+        width: 280px;
+        height: 280px;
+        background: linear-gradient(45deg, red, blue);
+        border-radius: 50%;
+      }
+      @keyframes rotate{
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }
+
+      & > .disc.active {
+        animation: rotate 3s linear  infinite ;
+      }
+      & > .pic {
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+        border: 30px solid transparent;
+        border-radius: 50%;
+        overflow: hidden;
+        & > img {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
+// @keyframes rotate{
+//   from {transform: rotate(0deg);}
+//   to {transform: rotate(180deg);}
+// }
 
 
-.musicbox > .main {
+.musicbox > footer {
   display: flex;
   flex-direction: column;
+
+  & > .adjust {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 0;
+
+    & > .adjust-volume {
+      margin-left: 80px;
+      vertical-align: middle;
+    }
+
+    & > .adjust-hide {
+      margin-right: 80px;
+      height: 20px;
+    }
+  }
+
+  & > .timeline {
+    width: 400px;
+    height: 20px;
+    margin: 0 auto;
+    // background: #fff;
+  }
+  & > .control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    & > i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & > .play {
+      height: 60px;
+      width: 60px;
+      margin: 0 40px;
+      border: 3px solid #FAFAD2;
+      border-radius: 50%;
+      line-height: 140px;
+    }
+
+    & > .icon-play {
+      display: flex;
+    }
+
+    & > .icon-pause {
+      display: none;
+    }
+
+    & > .pre {
+      width: 50px;
+      height: 30px;
+    }
+
+    & > .next {
+      width: 50px;
+      height: 30px;
+    }
+  }
+}
+
+/*滚动条样式*/
+.album-list{
+    &::-webkit-scrollbar{
+      width: 6px;
+      // height: 4px;
+      // border: 1px solid;
+      // background: red;
+    }
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+    &::-webkit-scrollbar-track  {
+
+    }
+    &::-webkit-scrollbar-thumb {
+      // background: blue;
+      box-shadow: inset 1px 1px 2px #fff;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-track-piece {
+      width: 10px;
+      height: 20px;
+    }
 }
