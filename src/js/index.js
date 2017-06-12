@@ -81,7 +81,7 @@ $pause.on("click", function() {
 function getMusicAlbum() {
   $.ajax({
     type: 'get',
-    url: "http://api.jirengu.com/fm/getChannels.php",
+    url: "https://jirenguapi.applinzi.com/fm/getChannels.php",
     dataType: "json",
   }).then((data) => {
     appendMusicAlbum(data);
@@ -104,7 +104,7 @@ function appendMusicAlbum(data) {
 
 //获取随机音乐
 function getMusicRandom(id) {
-  var musicUrl = "http://api.jirengu.com/fm/getSong.php?channel=" + id
+  var musicUrl = "https://jirenguapi.applinzi.com/fm/getSong.php?channel=" + id
   //console.log(url);
   $.ajax({
     type: 'get',
@@ -148,7 +148,7 @@ function appendMusicInfo(data) {
 
 //获取歌词
 function getLrc() {
-  var lrcUrl = "http://api.jirengu.com/fm/getLyric.php?&sid=" + music.sid;
+  var lrcUrl = "https://jirenguapi.applinzi.com/fm/getLyric.php?&sid=" + music.sid;
   // console.log(lrcUrl);
   $.ajax({
     type: 'get',
