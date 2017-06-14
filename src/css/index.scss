@@ -138,6 +138,11 @@
       padding: 8px;
       height: 305px;
       & > .disc {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -140px;
+        margin-top: -140px;
         width: 280px;
         height: 280px;
         background: linear-gradient(45deg, red, blue);
@@ -159,8 +164,9 @@
 
       & > .pic {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 280px;
         height: 280px;
         margin: 0 auto;
