@@ -50,6 +50,7 @@ var music = {
 //页面加载完成即获取随机音乐
 $(function(){
   getMusicRandom()
+  audioObject.play()
 })
 
 //点击获取专辑按钮
