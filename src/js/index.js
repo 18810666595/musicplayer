@@ -7,6 +7,7 @@ import '../css/index.scss'
 
 var audioObject = new Audio()
 audioObject.autoPlay = true
+audioObject.loop = false
 
 var $album = $(".album")
 var $albumList = $(".album-list")
@@ -16,8 +17,9 @@ var $next = $(".control .next")
 var $pre = $(".control .pre")
 var $disc = $(".disc")
 
-var timeNode = $('.musicbox .time')
+var timeNode = $('.timeline .time')
 var progressBarNode = $('.timeline .progress .bar')
+
 var progressNowNode = $('.timeline .progress-now')
 
 var voiceBarNode = $('.adjust-volume .progress .bar')
@@ -28,6 +30,10 @@ var $dis = $(".lrc .icon-dis")
 
 var $picCt = $("main .pic-ct")
 var $lrcCt = $("main .lrc-ct")
+
+var $loop = $(".adjust-loop .icon-loop")
+var $random = $(".adjust-loop .icon-random")
+var isLoop = false;
 // console.log($lrcCt);
 
 var music = {
@@ -98,6 +104,7 @@ $pause.on("click", function() {
 
 //点击进度条，调整播放时间
 progressBarNode.on("click", function(e) {
+  // console.log("clicked");
   // console.log($(this).width());
   var percent = e.offsetX / parseInt($(this).width())
   audioObject.currentTime = percent * audioObject.duration
@@ -110,6 +117,15 @@ audioObject.ontimeupdate = function() {
   setTimeNode() //设置播放时间
   setVoice() //设置当前音量
   slideLrc() //滑动歌词
+  if(audioObject.ended && isLoop){
+    audioObject.loop = true;
+    audioObject.play()
+  }
+  if(audioObject.ended && !isLoop){
+    audioObject.loop = false
+    getMusicRandom(music.channelId)
+  }
+
 }
 
 //设置音量
@@ -133,6 +149,20 @@ $dis.on("click", function() {
   $dis.css('display', 'none')
   $picCt.css('display', 'flex')
   $lrcCt.css('display', 'none')
+})
+
+//点击设置为随机播放
+$loop.on("click", function(){
+  $loop.css("display","none")
+  $random.css("display","inline-block")
+  isLoop = false;
+})
+
+//点击设置为循环播放
+$random.on("click", function(){
+  $random.css("display","none")
+  $loop.css("display","inline-block")
+    isLoop = true;
 })
 
 //获取音乐专辑
@@ -164,7 +194,7 @@ function appendMusicAlbum(data) {
 function getMusicRandom(id) {
   var id = id || 'public_yuzhong_huayu' //如果没有专辑id,默认为华语专辑
   var musicUrl = "https://jirenguapi.applinzi.com/fm/getSong.php?channel=" + id
-  console.log(musicUrl);
+  // console.log(musicUrl);
   $.ajax({
     type: 'get',
     url: musicUrl,
@@ -200,6 +230,13 @@ function appendMusicInfo(data) {
   $("main>h2").text(music.title)
   $("main>p").text(music.artist)
   $("main .pic").html(`<img src="${music.picture}">`)
+  $lrcCt.css({
+    "background-image": `url(${music.picture})`,
+    "background-size": `cover`,
+    "background-repeat":`no-repeat`,
+    "background-position": `center`,
+    "box-shadow": `inset 0px 0px 20px #fff`
+  })
   audioObject.src = music.url
   audioObject.play()
 
@@ -252,7 +289,7 @@ function appendLic(lyricArr) {
   var lyricLength = 0;
   var html = `<div class="lyric-ani" data-height="20">`;
   lyricArr.forEach((element, index) => {
-    var ele = element[1] === undefined ? '歌词错误' : element[1];
+    var ele = element[1] === undefined ? '歌词错误^_^' : element[1];
     html += `<p class="lyric-line" data-id="${index}"  data-time="${element[0]}" > ${ele} </p> \n`
     lyricLength++;
   })
@@ -287,11 +324,27 @@ function setProgress() {
 function setTimeNode() {
   var minute = parseInt(audioObject.currentTime / 60)
   var second = parseInt(audioObject.currentTime % 60)
+  var minuteTotal = parseInt(audioObject.duration / 60)
+  var secondTotal = parseInt(audioObject.duration % 60)
+
   if (second < 10) {
     second = "0" + second
   }
+
+  if(secondTotal < 10){
+    secondTotal="0"+secondTotal
+  }
+
+  if(isNaN(secondTotal)){
+    secondTotal = "00"
+  }
+
+  if(isNaN(minuteTotal)){
+    minuteTotal = "00"
+  }
+
   // console.log(second);
-  timeNode.text(minute + ":" + second)
+  timeNode.text(minute + ":" + second +" / "+ minuteTotal+":"+secondTotal)
 }
 
 //设置音量条的长度
@@ -307,8 +360,9 @@ function slideLrc() {
   // console.log($lrcCt);
   var lyricAni = $(".lyric-ani")
   // console.log(lyricAni);
-  var lyricH = lyricAni.data("height")
-  // console.log($lrcCt);
+  // var lyricH = lyricAni.data("height")
+  var lyricH = lyricAni.find("p").height()
+  // console.log(lyricH);
   var lyricP = $lrcCt.find('.lyric-ani p');
   // console.log(lyricP);
   var curTime = audioObject.currentTime;

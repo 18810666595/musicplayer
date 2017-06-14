@@ -37,9 +37,12 @@
   color: #FAFAD2;
 }
 
-.icon-hide:before {
+.icon-loop:before {
   font-size: 20px;
-  font-weight: bold;
+}
+
+.icon-random:before {
+  font-size: 20px;
 }
 
 .icon-lrc:before {

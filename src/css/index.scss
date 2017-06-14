@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 600px;
+  height: 630px;
   // border: 1px solid #000;
   border-radius: 10px;
   box-shadow: 2px 2px 2px #4B0082;
@@ -36,7 +36,7 @@
         top: 100%;
         left: 0;
         border: 1px solid rgba(245,245,220,0.3 );
-        // background: red;
+        background: linear-gradient(45deg , #a907a9, #9370DB);
         width: 100px;
         height: 340px;
         border-radius: 5px;
@@ -80,19 +80,22 @@
 
     & > h2 {
       // margin-top: 70px;
+      padding: 5px 0;
       font-size: 28px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: 	#F4A460;
     }
 
     & > p {
-      margin-top: 10px;
+      margin-top: 5px;
       margin-bottom: 10px;
       font-size: 18px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: #F0E68C	;
     }
 
     & > .lrc-ct {
@@ -100,23 +103,27 @@
       display: none;
       width: 400px;
       height: 305px;
+      border-radius: 20px;
       // text-align: center;
       margin: 0 auto;
       // margin-top: 5px;
-      background: yellow;
+      // background: yellow;
       overflow: hidden;
       & > .lyric-ani {
         margin: 0 auto;
         margin-top: 150px;
-        background: red;
+        background: rgba(0,128,128,0.5);
         & > p {
-          height: 20px;
-
+          height: 30px;
+          padding: 0 25px;
+          color: #fff;
+          // box-shadow: 0 0 10px #ddd;
           // transform: scale(1.2);
         }
         & > p.active{
-          color: blue;
+          color: #FFA500;
           transform: scale(1.25);
+          text-shadow: 2px 2px 2px #000;
         }
         // position: absolute;
         // top: 305px;
@@ -179,7 +186,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px 0;
+    padding-top: 15px;
+    padding-bottom: 10px;
 
     & > .adjust-volume {
       display: flex;
@@ -207,28 +215,37 @@
 
         .progress .progress-now {
           background-color: #ee8a87;
-          height: 3px;
+          height: 5px;
           width: 0;
           position: relative;
         }
       }
     }
 
-    & > .adjust-hide {
-      margin-right: 80px;
+    & > .adjust-loop {
+      margin-right: 100px;
+      margin-left: 20px;
       height: 20px;
+      & > .icon-random {
+        display: inline-block;
+      }
+      & > .icon-loop {
+        display: none;
+      }
     }
   }
 
   & > .timeline {
     width: 400px;
-    height: 20px;
+    // height: 20px;
     margin: 0 auto;
+    margin-top: 10px;
     // background: #fff;
     & > {
       .progress {
         margin: 0 auto;
         width: 300px;
+        // background: red;
       }
 
       .progress .bar {
@@ -236,18 +253,21 @@
         margin-top: 5px;
         background-color: rgba(0,0,0,0.2);
         cursor: pointer;
+        // background: red;
       }
 
       .progress .progress-now {
         background-color: #ee8a87;
-        height: 3px;
+        height: 5px;
         width: 0;
         position: relative;
       }
 
       .progress .time {
-        margin-top: 5px;
+        margin-bottom: 10px;
         text-align: right;
+        color: #fff;
+        font-size: 14px;
       }
 
       // .musicbox .music:after,
@@ -263,8 +283,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     & > i {
       display: flex;
       justify-content: center;
@@ -301,6 +321,26 @@
     }
   }
 }
+
+.musicbox footer .maker {
+  padding-bottom: 10px;
+  color: #191970;
+  text-align: center;
+  & > i {
+    display: inline-block;
+    color: #E0FFFF;
+  }
+  & > a {
+    text-decoration: none;
+    color: #E0FFFF;
+  }
+
+}
+
+
+
+
+
 /*滚动条样式*/
 .album-list {
   &::-webkit-scrollbar {
