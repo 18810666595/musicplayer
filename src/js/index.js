@@ -5,9 +5,11 @@ import '../css/iconfont.css'
 import '../css/timeline.scss'
 import '../css/index.scss'
 
+var isLoop = false;
+
 var audioObject = new Audio()
 audioObject.autoPlay = true
-audioObject.loop = false
+audioObject.loop = isLoop
 
 var $album = $(".album")
 var $albumList = $(".album-list")
@@ -33,7 +35,6 @@ var $lrcCt = $("main .lrc-ct")
 
 var $loop = $(".adjust-loop .icon-loop")
 var $random = $(".adjust-loop .icon-random")
-var isLoop = false;
 // console.log($lrcCt);
 
 var music = {
@@ -118,14 +119,14 @@ audioObject.ontimeupdate = function() {
   setVoice() //设置当前音量
   slideLrc() //滑动歌词
   if(audioObject.ended && isLoop){
-    audioObject.loop = true;
+    // audioObject.loop = true;
     audioObject.play()
   }
   if(audioObject.ended && !isLoop){
-    audioObject.loop = false
+    // audioObject.loop = false
     getMusicRandom(music.channelId)
+    audioObject.play()
   }
-
 }
 
 //设置音量
@@ -162,7 +163,7 @@ $loop.on("click", function(){
 $random.on("click", function(){
   $random.css("display","none")
   $loop.css("display","inline-block")
-    isLoop = true;
+  isLoop = true;
 })
 
 //获取音乐专辑
